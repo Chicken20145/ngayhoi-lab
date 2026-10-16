@@ -1,6 +1,7 @@
 """Demo đăng ký: một sinh viên chỉ đăng ký một lần cho mỗi phiên."""
 from contextlib import asynccontextmanager, closing
 from pathlib import Path
+import os
 import sqlite3
 
 from fastapi import FastAPI, HTTPException
@@ -19,7 +20,8 @@ class DangKy(BaseModel):
 
 
 def create_app(database_path: Path | None = None) -> FastAPI:
-    path = Path(database_path) if database_path is not None else Path(__file__).with_name('ngayhoi.db')
+    default_path = os.environ.get('DB_PATH', str(Path(__file__).with_name('ngayhoi.db')))
+    path = Path(database_path) if database_path is not None else Path(default_path)
 
     @asynccontextmanager
     async def lifespan(application: FastAPI):
