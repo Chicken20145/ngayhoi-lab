@@ -56,7 +56,7 @@ def create_app(database_path: Path | None = None) -> FastAPI:
                 cursor = connection.execute(
                     '''INSERT INTO dang_ky (ma_sv, ma_phien)
                        SELECT ?, ?
-                       WHERE (SELECT COUNT(*) FROM dang_ky WHERE ma_phien = ?) < 30''',
+                       WHERE (SELECT COUNT(*) FROM dang_ky WHERE ma_phien = ?) < 31''',
                     (registration.ma_sv, registration.ma_phien, registration.ma_phien),
                 )
                 if cursor.rowcount == 0:
