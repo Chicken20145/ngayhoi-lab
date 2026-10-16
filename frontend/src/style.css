@@ -1,0 +1,46 @@
+:root { font-family: Arial, Helvetica, sans-serif; color: #18382b; background: #f7f7ef; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.shell { max-width: 1160px; margin-inline: auto; padding-inline: 36px; }
+.masthead { border-bottom: 1px solid #ced7c9; }
+.masthead .shell { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 84px; }
+.brand { font-size: 14px; font-weight: 700; letter-spacing: 1.3px; }
+.course { font-size: 12px; color: #516252; }
+.layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 84px; align-items: start; padding-top: 64px; padding-bottom: 50px; }
+.eyebrow { margin: 0 0 22px; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; }
+h1 { margin: 0 0 24px; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.06; letter-spacing: -2px; font-weight: 700; }
+.description { font-size: 16px; line-height: 1.65; max-width: 440px; color: #536153; margin-bottom: 30px; }
+h2 { font-size: 22px; letter-spacing: -.5px; margin: 0 0 16px; }
+.intro h2 { font-size: 14px; letter-spacing: 0; margin-bottom: 10px; }
+.sessions { margin: 0; padding: 0; list-style: none; }
+.sessions li { display: flex; gap: 18px; border-top: 1px solid #d1d9cc; padding: 15px 0; }
+.session-code { font-size: 12px; font-weight: 700; padding-top: 2px; }
+h3 { margin: 0 0 5px; font-size: 14px; }
+.sessions p { margin: 0; color: #59675b; font-size: 12px; line-height: 1.5; }
+.demo-note { color: #606960; font-size: 12px; line-height: 1.6; margin-top: 22px; }
+.registration { background: #fffef9; border: 1px solid #cad2c5; padding: 32px; margin-top: 12px; }
+.registration .eyebrow { border-left: 4px solid #dfbf3f; padding-left: 12px; margin-bottom: 24px; }
+.registration h2 { font-size: 27px; }
+.form-note { color: #5a675b; font-size: 14px; line-height: 1.6; margin: 0 0 28px; }
+label { display: block; font-size: 13px; font-weight: 700; margin: 20px 0 9px; }
+input, select, button { width: 100%; min-width: 0; min-height: 48px; font: inherit; font-size: 14px; }
+input, select { border: 1px solid #aab7a8; border-radius: 3px; padding: 12px; background: #fff; color: #213c2e; }
+select { padding-right: 8px; }
+input::placeholder { color: #69756a; }
+.hint, .privacy-note { color: #647064; font-size: 12px; line-height: 1.5; }
+.hint { margin: 8px 0 20px; }
+button { background: #1c543b; color: #fff; border: 1px solid #1c543b; border-radius: 3px; padding: 12px; margin-top: 28px; font-weight: 700; cursor: pointer; }
+button:hover:not(:disabled) { background: #143f2c; }
+button:disabled { cursor: wait; background: #536e5f; }
+input:disabled, select:disabled { background: #f1f3ec; color: #5f6a60; }
+:focus-visible { outline: 3px solid #b37d14; outline-offset: 3px; }
+.status { margin-top: 18px; min-height: 56px; font-size: 13px; line-height: 1.5; padding: 12px; border: 1px solid #d4dace; color: #576156; background: #f7f8f3; overflow-wrap: anywhere; }
+.status--pending { color: #334f69; background: #f0f5f8; border-color: #b0c1cc; }
+.status--success { color: #154b30; background: #ecf6ed; border-color: #9dc4a4; }
+.status--duplicate { color: #6b4805; background: #fff6d8; border-color: #d9bc71; }
+.status--error { color: #7c2925; background: #fff0ed; border-color: #d5aaa0; }
+.privacy-note { border-top: 1px solid #dae0d6; padding-top: 18px; margin: 22px 0 0; }
+.footer { border-top: 1px solid #ced7c9; padding-block: 22px; color: #617060; font-size: 11px; line-height: 1.5; }
+@media (max-width: 900px) { .layout { gap: 36px; } .registration { padding: 24px; } }
+@media (max-width: 700px) { .shell { padding-inline: 22px; } .layout { grid-template-columns: 1fr; gap: 20px; padding-top: 36px; } h1 br { display: none; } h1 { max-width: 450px; font-size: 40px; } .masthead .shell { min-height: 72px; align-items: start; justify-content: center; flex-direction: column; gap: 8px; padding-block: 16px; } .registration { margin: 0; } }
+@media (max-width: 360px) { .shell { padding-inline: 16px; } h1 { font-size: 34px; } .registration { padding: 20px 16px; } select { font-size: 12px; } }
