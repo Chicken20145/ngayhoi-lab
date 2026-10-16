@@ -24,3 +24,16 @@ Giao diện: mở cửa sổ khác, `cd frontend`, `npm ci --ignore-scripts`, `n
 Tác giả commit dùng danh tính quy ước; các fixture là mã giả. Không nhập lịch sử Git gốc,
 tài liệu Word, ảnh, log, bundle, CSDL hay thông tin người học vào kho này.
 Phần bài 3–4 từng có bản nháp hỗ trợ bởi Ollama, được kiểm tra lại bằng test.
+
+## Bài 4: giới hạn 30 chỗ
+
+Mỗi phiên tối đa 30 người. Trùng cặp trả `DA_DANG_KY`; phiên đầy trả `HET_CHO`.
+`spec.md` có sáu ví dụ; năm test giới hạn nằm trong `backend/tests/test_gioi_han.py`.
+
+```powershell
+& .\.venv\Scripts\python.exe -m pip install -r backend/requirements-test.txt
+cd backend
+& ..\.venv\Scripts\python.exe -m pytest -q
+```
+
+Hai commit test và tính năng tách riêng; test giới hạn không bị sửa sau commit test.
