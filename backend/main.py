@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 import sqlite3
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, StrictStr, field_validator
 
@@ -74,6 +74,21 @@ def create_app(database_path: Path | None = None) -> FastAPI:
         except sqlite3.Error as error:
             raise HTTPException(status_code=500, detail='LOI_CSDL') from error
         return {'ok': True}
+
+    @application.get('/api/con-cho', responses={500: {'description': 'Lỗi cơ sở dữ liệu'}})
+    def remaining_seats(ma_phien: str = Query(description='Mã phiên, tối đa 64 ký tự sau khi bỏ khoảng trắng')) -> dict[str, int]:
+        session = ma_phien.strip()
+        if not session or len(session) > 64:
+            raise HTTPException(status_code=422, detail='MA_PHIEN_KHONG_HOP_LE')
+        try:
+            uri = path.resolve().as_uri() + '?mode=ro'
+            with closing(sqlite3.connect(uri, uri=True, timeout=10)) as connection:
+                count = connection.execute(
+                    'SELECT COUNT(*) FROM dang_ky WHERE ma_phien = ?', (session,),
+                ).fetchone()[0]
+        except sqlite3.Error as error:
+            raise HTTPException(status_code=500, detail='LOI_CSDL') from error
+        return {'con_cho': max(0, 30 - count)}
 
     return application
 
