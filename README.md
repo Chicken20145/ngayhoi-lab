@@ -7,6 +7,7 @@ Bài tập môn **CSE3051 Các công cụ trong AI**, xây dựng cổng đăng 
 - Đăng ký bằng mã sinh viên và mã phiên.
 - Không nhận đăng ký trùng một sinh viên trong cùng một phiên.
 - Giới hạn mỗi phiên 30 người, tính riêng từng phiên.
+- Xem số chỗ còn lại của một phiên qua API trên nhánh `con-cho`.
 - Hiển thị kết quả đăng ký thành công, đã đăng ký, hết chỗ và lỗi dữ liệu.
 - Chạy kiểm thử tự động trên GitHub khi mở hoặc cập nhật pull request.
 
@@ -71,7 +72,7 @@ npm run dev
 
 Mở **http://localhost:5173**. Backend phải chạy ở cổng 8000. CORS chỉ cho phép địa chỉ giao diện này.
 
-## API đăng ký
+## API
 
 `POST /api/dang-ky` nhận dữ liệu:
 
@@ -91,6 +92,12 @@ Mở **http://localhost:5173**. Backend phải chạy ở cổng 8000. CORS ch�
 | Lỗi cơ sở dữ liệu | 500 | `{"detail": "LOI_CSDL"}` |
 
 Nếu sinh viên đã có trong một phiên đầy, hệ thống ưu tiên báo `DA_DANG_KY`. Việc đếm và ghi được thực hiện trong một câu lệnh SQLite để tránh nhận vượt sức chứa khi có yêu cầu đồng thời.
+
+### GET /api/con-cho
+
+Phần mở rộng ở nhánh `con-cho`: gọi `GET /api/con-cho?ma_phien=P01` để nhận `{"con_cho": n}`. Phiên chưa có đăng ký trả 30; phiên đầy trả 0. API chỉ đọc, không giữ chỗ. Mã phiên thiếu hoặc không hợp lệ trả 422; lỗi CSDL trả 500.
+
+Để thử phần này, từ gốc kho đã clone chạy `git switch con-cho`, rồi khởi động backend như trên. Trong lúc PR còn chờ, chức năng này chưa nằm trên `master`.
 
 ## Kiểm thử
 
