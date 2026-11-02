@@ -18,7 +18,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install requirements
-        run: python -m pip install --only-binary=:all: -r bai6-quyche/requirements.txt
+        run: >-
+          python -m pip install --only-binary=:all: -r bai6-quyche/requirements.txt
       - name: Run bai6 tests
         run: python -X utf8 -m unittest discover -s bai6-quyche/tests -v
       - name: Run bai7 tests
