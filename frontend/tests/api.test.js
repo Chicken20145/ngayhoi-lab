@@ -19,6 +19,11 @@ test('409 DA_DANG_KY maps to duplicate', async () => {
     new Response('{"detail":"DA_DANG_KY"}', {status:409})),
     {state:'duplicate',message:'Bạn đã đăng ký phiên này.'});
 });
+test('409 HET_CHO tells the student the session is full', async () => {
+  assert.deepEqual(await submitRegistration(payload, async () =>
+    new Response('{"detail":"HET_CHO"}', {status:409})),
+    {state:'error',message:'Phiên này đã đủ 30 chỗ. Bạn hãy chọn phiên khác.'});
+});
 test('422 maps to validation error not duplicate', async () => {
   const r = await submitRegistration(payload, async () => new Response('{"detail":[]}', {status:422}));
   assert.equal(r.state, 'error');

@@ -17,6 +17,9 @@ export async function submitRegistration(payload, fetchImpl = fetch) {
   if (response.status === 409 && data?.detail === 'DA_DANG_KY') {
     return {state: 'duplicate', message: 'Bạn đã đăng ký phiên này.'};
   }
+  if (response.status === 409 && data?.detail === 'HET_CHO') {
+    return {state: 'error', message: 'Phiên này đã đủ 30 chỗ. Bạn hãy chọn phiên khác.'};
+  }
   if (response.status === 422) {
     return {state: 'error', message: 'Dữ liệu chưa hợp lệ. Hãy kiểm tra mã sinh viên và mã phiên.'};
   }
