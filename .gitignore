@@ -29,3 +29,9 @@ scripts/
 *.pem
 *.key
 private-work/
+
+bai6-quyche/quy_che.md
+bai6-quyche/cau_hoi_vang.json
+bai6-quyche/chi_muc.json
+bai7-agent/nhiem_vu.json
+bai7-agent/nhat_ky.jsonl

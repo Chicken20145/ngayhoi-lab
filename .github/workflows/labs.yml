@@ -2,7 +2,7 @@ name: labs
 
 on:
   push:
-    branches: [bai6-bai7]
+    branches: [master]
   pull_request:
 
 permissions:
